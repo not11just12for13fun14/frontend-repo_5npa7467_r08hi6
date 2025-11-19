@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Code2, PenTool, Wrench, Share2 } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const ICONS = { Code2, PenTool, Wrench, Share2 }
 
@@ -33,7 +34,14 @@ export default function Services() {
           {services.map((s, i) => {
             const Icon = ICONS[s.icon] || Code2
             return (
-              <div key={i} className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6 hover:-translate-y-1 hover:shadow-xl transition-all">
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-10% 0px' }}
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6 hover:-translate-y-1 hover:shadow-xl transition-all"
+              >
                 <div className="h-12 w-12 rounded-lg bg-emerald-500/20 text-emerald-300 grid place-items-center group-hover:bg-emerald-500/30 transition">
                   <Icon size={22} />
                 </div>
@@ -49,7 +57,7 @@ export default function Services() {
                     ))}
                   </ul>
                 )}
-              </div>
+              </motion.div>
             )
           })}
         </div>
